@@ -1,23 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react';
 
 function App() {
+  const [state, setState] = useState(true);
+  const [currentCount, setCurrentCount] = useState(0)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className='headind'>A simple app for testing</h1>
+      <button id='control-btn' onClick = {() => setState(prev => !prev)} >toggle text</button>
+      {state && <p className='controlled-text'>this text display status is dependent on the app state</p>}
+      <button id='increment' onClick = {() => setCurrentCount(prev => prev + 1)} >+</button>
+      <button id='decrement' { ...currentCount > 0 && { onClick: () => {setCurrentCount(prev => prev - 1)} } } >-</button>
+      <p id='count'>{currentCount}</p>
     </div>
   );
 }
